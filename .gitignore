@@ -1,0 +1,24 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+npm-debug.log
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# Personal Assets (just in case)
+assets/*.jpg
+assets/*.jpeg
+assets/*.png
+assets/*.webp
+!assets/placeholder.png 
+# Keep the music file if you have rights, otherwise ignore it too. 
+# assets/*.mp3 

@@ -1,0 +1,1471 @@
+:root {
+    --primary: #FFB7C5;
+    /* Deeper Blush */
+    --primary-gradient: linear-gradient(135deg, #FFB7C5 0%, #FF9EAA 100%);
+    --secondary: #E0BBE4;
+    /* Lavender */
+    --accent: #FFD700;
+    /* Gold */
+    --text-main: #2C3E50;
+    /* Deep Blue/Grey for contrast */
+    --text-light: #555;
+    --bg-base: #FFF0F5;
+
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-hand: 'Dancing Script', cursive;
+
+    --glass-bg: rgba(255, 255, 255, 0.6);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.4);
+    --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --shadow-card: 0 15px 40px rgba(0, 0, 0, 0.1);
+    --shadow-float: 0 20px 50px rgba(255, 183, 197, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-base);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    /* Animated mesh gradient background similar to modern web trends */
+    background: radial-gradient(circle at 10% 20%, rgb(255, 228, 225) 0%, rgb(255, 240, 245) 90%);
+}
+
+/* Floating Blobs for aesthetics */
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: -1;
+    animation: floatBlob 20s infinite alternate;
+}
+
+body::before {
+    width: 600px;
+    height: 600px;
+    background: rgba(255, 183, 197, 0.3);
+    top: -100px;
+    left: -100px;
+}
+
+body::after {
+    width: 500px;
+    height: 500px;
+    background: rgba(224, 187, 228, 0.3);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -5s;
+}
+
+@keyframes floatBlob {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(50px, 50px) rotate(20deg);
+    }
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-heading);
+    color: var(--text-main);
+    font-weight: 700;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Music Control - Glassmorphism */
+.music-control {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: var(--glass-border);
+    padding: 12px 25px;
+    border-radius: 50px;
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    z-index: 1000;
+    font-size: 0.95rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.music-control:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 183, 197, 0.6);
+}
+
+/* Confetti */
+#confetti-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+/* Hero Section */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 0;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 550px;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3.7rem;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-shadow: 2px 2px 0px rgba(255, 183, 197, 0.5);
+}
+
+.hero-title span {
+    display: inline-block;
+    color: #e91e63;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.3);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.3);
+    }
+
+    60% {
+        transform: scale(1);
+    }
+}
+
+.hero-date {
+    font-family: var(--font-hand);
+    /* Cursive */
+    font-size: 2rem;
+    /* Larger for script */
+    letter-spacing: 1px;
+    text-transform: none;
+    /* Script doesn't look good in caps */
+    color: #e91e63;
+    /* Pinkish to match theme */
+    margin-bottom: 2.5rem;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: var(--text-main);
+    color: #ffffff !important;
+    /* Force white */
+    padding: 18px 45px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 25px rgba(44, 62, 80, 0.3);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    /* Ensure text is above background pseudo-elements */
+}
+
+.btn-primary:hover {
+    transform: translateY(-5px) scale(1.05);
+    background: #1a252f;
+    box-shadow: 0 20px 40px rgba(44, 62, 80, 0.5);
+}
+
+/* Relationship Timer - Glassmorphism Style */
+.relationship-timer {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+    margin-bottom: 2rem;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.timer-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.25);
+    /* Glassy background */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 10px 12px;
+    min-width: 60px;
+    border-radius: 12px;
+    /* Softer corners */
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    /* Glass edge */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    /* Soft shadow */
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+.timer-item:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.timer-item span {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: #e91e63;
+    /* Back to brand pink */
+    line-height: 1;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.8);
+    margin-bottom: 5px;
+}
+
+.timer-item label {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555;
+    /* Darker grey for legibility */
+    font-weight: 600;
+    margin-top: 2px;
+    opacity: 1;
+}
+
+.separator {
+    display: none;
+    /* Hide colons */
+}
+
+/* Hero Visual */
+.hero-visual {
+    flex: 1;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.photo-scroll-strip {
+    width: 370px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-track {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    animation: scrollVertical 25s linear infinite;
+}
+
+@keyframes scrollVertical {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+.photo-card {
+    background: white;
+    padding: 12px;
+    border-radius: 16px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.4s ease;
+}
+
+.photo-card img {
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+}
+
+/* Horizontal Memories Marquee */
+.story-section {
+    padding: 120px 0;
+    overflow: hidden;
+}
+
+.section-title {
+    font-size: 3.5rem;
+    text-align: center;
+    margin-bottom: 60px;
+    font-family: var(--font-hand);
+    color: var(--text-main);
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.marquee-container {
+    width: 100%;
+    overflow-x: hidden;
+    padding: 40px 0;
+    position: relative;
+}
+
+/* Fade mask for marquee edges */
+.marquee-container::before,
+.marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-base), transparent);
+}
+
+.marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-base), transparent);
+}
+
+
+.marquee-content {
+    display: flex;
+    gap: 40px;
+    animation: scrollHorizontal 30s linear infinite;
+    width: max-content;
+    /* Ensure it fits content */
+}
+
+/* Pause on hover */
+.marquee-content:hover {
+    animation-play-state: paused;
+}
+
+@keyframes scrollHorizontal {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+
+    /* Halfway because we duplicated content */
+}
+
+.memory-card {
+    flex: 0 0 320px;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border: var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.5s ease;
+    position: relative;
+    display: flex;
+    /* Fix for layout */
+    flex-direction: column;
+}
+
+.memory-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    box-shadow: var(--shadow-float);
+    background: white;
+    z-index: 5;
+}
+
+.memory-img {
+    height: 250px;
+    overflow: hidden;
+}
+
+.memory-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.memory-card:hover .memory-img img {
+    transform: scale(1.1);
+}
+
+.memory-info {
+    padding: 25px;
+    text-align: center;
+}
+
+.memory-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--text-main);
+}
+
+.memory-info p {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* --- Cinematic Love Letter Section (Base) --- */
+.letter-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 100px 0;
+    /* Soft pastel gradient with vignette */
+    background: radial-gradient(circle at center, #FFF0F5 0%, #ffe6ea 40%, #E6E6FA 100%);
+    overflow: hidden;
+
+    /* Animation Initial State */
+    opacity: 0;
+    transition: opacity 1.5s ease-out;
+}
+
+/* Vignette Effect */
+.letter-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 50%, rgba(0, 0, 0, 0.05) 100%);
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 2s ease;
+    /* Fade in vignette */
+}
+
+/* Focus Mode Backdrop */
+body.focus-mode::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    z-index: 900;
+    opacity: 0;
+    animation: fadeIn 0.8s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.envelope-container {
+    perspective: 1200px;
+    z-index: 10;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* Envelope Physical styling */
+.envelope {
+    width: 600px;
+    height: 400px;
+    background: linear-gradient(135deg, #FFD1DC 0%, #ffc0cb 100%);
+    position: relative;
+    cursor: pointer;
+    box-shadow:
+        0 20px 40px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+    border-radius: 12px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-style: preserve-3d;
+    /* Subtle breathing animation */
+    animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.envelope:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+}
+
+/* Flap Design */
+.flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    /* Half height */
+    background: linear-gradient(180deg, #e09ba8 0%, #FFB7C5 100%);
+    clip-path: polygon(0 0, 50% 100%, 100% 0);
+    transform-origin: top;
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+    /* Darker subtle shadow on flap */
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+}
+
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+    transition-delay: 0s;
+}
+
+/* Wax Seal */
+.wax-seal {
+    position: absolute;
+    bottom: 20px;
+    /* Position near the tip of the flap (approx) */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at 30% 30%, #ff4d4d, #b30000);
+    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    animation: pulseGlow 3s infinite;
+}
+
+/* Fix wax seal position relative to flap triangle */
+.flap .wax-seal {
+    bottom: unset;
+    top: 85%;
+    /* Near tip */
+}
+
+@keyframes pulseGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 77, 77, 0.4);
+        transform: translateX(-50%) scale(1);
+    }
+
+    50% {
+        box-shadow: 0 0 20px 10px rgba(255, 77, 77, 0);
+        transform: translateX(-50%) scale(1.05);
+    }
+}
+
+/* Body (Pocket) */
+.body {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(0deg, #FFD1DC 0%, transparent 100%);
+    z-index: 4;
+    border-radius: 12px;
+    pointer-events: none;
+    /* Let clicks pass to envelope/letter if needed */
+}
+
+/* Call to Action Text */
+.click-hint {
+    font-family: var(--font-hand);
+    color: #884d62;
+    font-size: 1.5rem;
+    margin-top: 30px;
+    opacity: 0;
+    /* Hidden initially */
+    transform: translateY(10px);
+    transition: all 1s ease;
+}
+
+.letter-section.cinematic-active .click-hint {
+    animation: hintReveal 1.5s ease forwards 2.5s;
+    /* Delay for envelope to settle covers step 3 (pause) */
+}
+
+@keyframes hintReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 0.8;
+        transform: translateY(0);
+    }
+}
+
+/* Post-entry idle animation for hint */
+.letter-section.cinematic-active .click-hint.idle {
+    animation: shimmer 2s infinite alternate;
+}
+
+
+@keyframes shimmer {
+    from {
+        opacity: 0.5;
+        transform: scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* --- Cinematic Entry Animations --- */
+
+/* 1. Background Intro */
+.letter-section {
+    /* Existing styles... */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+
+    /* Initial state for cinematic entry */
+    opacity: 0;
+    transition: opacity 1.5s ease-out;
+    /* Smooth fade in */
+}
+
+.letter-section.cinematic-active {
+    opacity: 1;
+}
+
+/* Vignette enhancement on active */
+.letter-section.cinematic-active::before {
+    opacity: 1;
+    transition: opacity 2s ease;
+}
+
+.letter-section::before {
+    /* ... existing content ... */
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle, transparent 40%, rgba(0, 0, 0, 0.1) 100%);
+    /* Stronger vignette */
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    /* Hidden initially */
+}
+
+
+/* 2. Envelope Entrance */
+.envelope-container {
+    perspective: 1200px;
+    z-index: 10;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    /* Initial State */
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+}
+
+.letter-section.cinematic-active .envelope-container {
+    animation: envelopeGentleEntrance 2s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.5s;
+    /* 0.5s delay after bg starts */
+}
+
+@keyframes envelopeGentleEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* 5. Idle Animation (Post-Entry) */
+.envelope-container.idle-active .envelope {
+    animation: breathe 6s ease-in-out infinite;
+    /* Reuse breathe */
+}
+
+/* Override initial envelope animation to wait for idle class */
+.envelope {
+    /* ... existing styles ... */
+    width: 600px;
+    height: 400px;
+    background: linear-gradient(135deg, #FFD1DC 0%, #ffc0cb 100%);
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.4) inset;
+    border-radius: 12px;
+    transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-style: preserve-3d;
+
+    animation: none;
+    /* Disable default breathe initially */
+}
+
+
+/* Letter Design (Closed state) */
+.letter {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    right: 20px;
+    top: 80px;
+    background: #fffdf0;
+    border-radius: 4px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    z-index: 2;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+    opacity: 0;
+}
+
+/* --- Letter OPEN STATE (Focus Mode) --- */
+/* Hide original letter interaction since we use overlay now */
+.envelope.open .letter {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition: opacity 0.1s;
+}
+
+/* --- Overlay Letter Mode --- */
+.letter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    /* Backdrop */
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    /* Highest priority */
+    display: flex;
+    /* Centering */
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.8s ease;
+}
+
+.letter-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.letter-paper {
+    width: 90vw;
+    max-width: 700px;
+    height: 85vh;
+    background: #fffdf0;
+    padding: 60px;
+    box-shadow: 0 25px 100px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    transform: translateY(50px) scale(0.95);
+    transition: transform 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.letter-overlay.active .letter-paper {
+    transform: translateY(0) scale(1);
+}
+
+.letter-content-view {
+    font-family: var(--font-hand);
+    font-size: 1.8rem;
+    line-height: 1.8;
+    color: #4a3b3b;
+    overflow-y: auto;
+    height: 100%;
+    padding-right: 20px;
+}
+
+/* Scrollbar */
+.letter-content-view::-webkit-scrollbar {
+    width: 6px;
+}
+
+.letter-content-view::-webkit-scrollbar-thumb {
+    background: #d4a5a5;
+    border-radius: 3px;
+}
+
+.close-overlay {
+    align-self: center;
+    margin-top: 30px;
+    background: transparent;
+    border: 2px solid #d4a5a5;
+    color: #d4a5a5;
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.close-overlay:hover {
+    background: #d4a5a5;
+    color: white;
+}
+
+.envelope.open .click-hint {
+    opacity: 0;
+    /* Hide hint when open */
+    display: none;
+}
+
+.letter-content {
+    font-family: var(--font-hand);
+    font-size: 1.8rem;
+    line-height: 1.8;
+    color: #4a3b3b;
+    overflow-y: auto;
+    height: 100%;
+    padding-right: 20px;
+    /* Typewriter effect handled by JS class or CSS animation on load */
+    animation: textFadeIn 1s 0.5s forwards;
+    opacity: 0;
+}
+
+@keyframes textFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Scrollbar */
+.letter-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.letter-content::-webkit-scrollbar-thumb {
+    background: #d4a5a5;
+    border-radius: 3px;
+}
+
+.close-letter {
+    align-self: center;
+    margin-top: 30px;
+    background: transparent;
+    border: 2px solid #d4a5a5;
+    color: #d4a5a5;
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-family: var(--font-body);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.close-letter:hover {
+    background: #d4a5a5;
+    color: white;
+}
+
+/* --- Cinematic Promise Scroll Section --- */
+.promise-section {
+    padding: 100px 0;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    perspective: 1000px;
+}
+
+/* Dim Background on Active */
+.promise-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    opacity: 0;
+    transition: opacity 2s ease;
+    z-index: 1;
+}
+
+.promise-section.active .promise-backdrop {
+    opacity: 1;
+}
+
+/* Scroll Container */
+.scroll-container {
+    position: relative;
+    width: 600px;
+    z-index: 10;
+    opacity: 0;
+    transform: translateY(-50px);
+    transition: all 1s ease;
+}
+
+.promise-section.active .scroll-container {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* The Paper Body */
+.scroll-paper {
+    background: #fdfbf7;
+    /* Parchment base */
+    background-image:
+        linear-gradient(to right, rgba(0, 0, 0, 0.05) 0%, transparent 10%, transparent 90%, rgba(0, 0, 0, 0.05) 100%),
+        url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    width: 100%;
+    height: 0;
+    /* Inteially rolled up */
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    transition: height 3s ease-in-out;
+}
+
+.promise-section.active .scroll-paper {
+    height: 700px;
+    /* Unrolled height */
+    transition-delay: 0.5s;
+}
+
+/* Top and Bottom Rolls (Visual Cylinders) */
+.scroll-top-roll,
+.scroll-bottom-roll {
+    height: 40px;
+    width: 110%;
+    background: linear-gradient(to bottom, #e6dace, #cbb69d, #e6dace);
+    border-radius: 20px;
+    position: absolute;
+    left: -5%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 12;
+}
+
+.scroll-top-roll {
+    top: -20px;
+    /* Circle decoration ends */
+}
+
+.scroll-top-roll::before,
+.scroll-top-roll::after,
+.scroll-bottom-roll::before,
+.scroll-bottom-roll::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background: #8b4513;
+    /* Wood/Dark Gold */
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.scroll-top-roll::before,
+.scroll-bottom-roll::before {
+    left: 10px;
+}
+
+.scroll-top-roll::after,
+.scroll-bottom-roll::after {
+    right: 10px;
+}
+
+.scroll-bottom-roll {
+    bottom: -20px;
+    top: auto;
+    transition: bottom 3s ease-in-out;
+    /* Match paper unroll */
+    bottom: 100%;
+    /* Start at top */
+}
+
+.promise-section.active .scroll-bottom-roll {
+    bottom: -20px;
+    /* End at bottom */
+    transition-delay: 0.5s;
+}
+
+/* Content Inside */
+.scroll-content {
+    padding: 60px 40px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.promise-section.active .scroll-content {
+    opacity: 1;
+    transition-delay: 3s;
+    /* Wait for unroll */
+}
+
+.promise-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    color: #5a4a42;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.promise-section.active .promise-title {
+    animation: fadeInUp 1s ease forwards 3.2s;
+}
+
+.divider {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    opacity: 0;
+}
+
+.promise-section.active .divider {
+    animation: fadeIn 1s ease forwards 3.5s;
+}
+
+/* Promise Lines - Handwriting Effect */
+.promise-lines-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.line {
+    font-family: var(--font-hand);
+    font-size: 1.8rem;
+    color: #443333;
+    position: relative;
+    /* Handwriting reveal logic */
+    clip-path: inset(0 100% 0 0);
+    opacity: 0;
+}
+
+.promise-section.active .line {
+    opacity: 1;
+}
+
+/* Staggered Animations */
+.promise-section.active .line:nth-child(1) {
+    animation: typeWrite 3s steps(60, end) forwards 3.8s;
+}
+
+.promise-section.active .line:nth-child(2) {
+    animation: typeWrite 3s steps(60, end) forwards 6.8s;
+}
+
+.promise-section.active .line:nth-child(3) {
+    animation: typeWrite 3s steps(60, end) forwards 9.8s;
+}
+
+.promise-section.active .line:nth-child(4) {
+    animation: typeWrite 3s steps(60, end) forwards 12.8s;
+}
+
+@keyframes typeWrite {
+    from {
+        clip-path: inset(0 100% 0 0);
+    }
+
+    to {
+        clip-path: inset(0 0 0 0);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Signature */
+.signature {
+    margin-top: 50px;
+    font-family: var(--font-heading);
+    color: #444;
+    font-size: 1.2rem;
+    opacity: 0;
+}
+
+.sign-name {
+    display: block;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    color: #e91e63;
+    margin-top: 10px;
+    clip-path: inset(0 100% 0 0);
+    /* Hidden initially */
+}
+
+.promise-section.active .signature {
+    animation: fadeIn 1s ease forwards 16s;
+}
+
+.promise-section.active .sign-name {
+    animation: typeWrite 2s steps(40, end) forwards 16.5s;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .scroll-container {
+        width: 90%;
+    }
+
+    .promise-section.active .scroll-paper {
+        height: auto;
+        min-height: 500px;
+    }
+
+    /* Mobile needs clearer text */
+    .line {
+        font-size: 1.4rem;
+    }
+
+    .scroll-bottom-roll {
+        /* Complex to animate exactly with auto height, so simplified */
+        bottom: -20px !important;
+        transition: none;
+        opacity: 0;
+    }
+
+    .promise-section.active .scroll-bottom-roll {
+        opacity: 1;
+        transition: opacity 1s 3s;
+        /* Fade in at bottom */
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .marquee-content {
+        gap: 20px;
+    }
+
+    .memory-card {
+        flex: 0 0 260px;
+    }
+
+    .envelope-container {
+        transform: scale(1);
+    }
+
+    .envelope.open .letter {
+        width: 120vw;
+        left: -60vw;
+        /* Center relative to envelope center */
+        position: fixed;
+        top: 15%;
+        left: 5%;
+        right: 5%;
+        transform: none;
+    }
+}
+
+/* --- Photo Collage / Scrapbook Section --- */
+.collage-section {
+    padding: 100px 0;
+    background: #FFF5EE;
+    /* Seashell warmth */
+    position: relative;
+    overflow: hidden;
+}
+
+.collage-header {
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.section-subtitle {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: #888;
+    margin-top: -40px;
+    margin-bottom: 40px;
+    font-style: italic;
+}
+
+.scrapbook-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    perspective: 1000px;
+}
+
+/* Polaroid Styling */
+.polaroid-item {
+    background: white;
+    padding: 15px 15px 50px 15px;
+    /* Bottom padding for caption */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    cursor: pointer;
+    width: 280px;
+    transform-origin: center;
+    border-radius: 2px;
+}
+
+/* Washi Tape Effect */
+.tape-strip {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 30px;
+    background: rgba(255, 183, 197, 0.6);
+    /* Translucent pink tape */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    opacity: 0.8;
+    clip-path: polygon(0% 10%, 5% 0%, 95% 0%, 100% 10%, 100% 90%, 95% 100%, 5% 100%, 0% 90%);
+    /* Jagged edges */
+}
+
+/* Random Rotations */
+.polaroid-item:nth-child(odd) .tape-strip {
+    background: rgba(224, 187, 228, 0.6);
+    transform: translateX(-50%) rotate(-2deg);
+}
+
+.polaroid-item:nth-child(even) .tape-strip {
+    background: rgba(255, 215, 0, 0.4);
+    transform: translateX(-50%) rotate(2deg);
+}
+
+/* Chaotic positioning simulation with simple rotations */
+.polaroid-item:nth-child(1) {
+    transform: rotate(-3deg);
+    margin-top: 20px;
+}
+
+.polaroid-item:nth-child(2) {
+    transform: rotate(2deg);
+    margin-top: -10px;
+}
+
+.polaroid-item:nth-child(3) {
+    transform: rotate(-1.5deg);
+    margin-top: 30px;
+}
+
+.polaroid-item:nth-child(4) {
+    transform: rotate(4deg);
+    margin-top: 0px;
+}
+
+.polaroid-item:nth-child(5) {
+    transform: rotate(-4deg);
+    margin-top: 40px;
+}
+
+/* Hover Effects */
+.polaroid-item:hover {
+    transform: scale(1.1) rotate(0deg) !important;
+    /* Straighten and lift */
+    z-index: 20;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 2px;
+    filter: sepia(10%);
+    /* Subtle nostalgic tint */
+    transition: filter 0.3s;
+}
+
+.polaroid-item:hover .photo-frame img {
+    filter: sepia(0%);
+}
+
+.handwritten-caption {
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    font-family: var(--font-hand);
+    /* Cursive */
+    font-size: 1.4rem;
+    color: #444;
+}
+
+/* Lightbox Styles */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    position: relative;
+    text-align: center;
+    transform: scale(0.9);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lightbox-overlay.active .lightbox-content {
+    transform: scale(1);
+}
+
+.lightbox-content img {
+    max-height: 80vh;
+    max-width: 100%;
+    border-radius: 4px;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+    border: 5px solid white;
+}
+
+.lightbox-caption {
+    color: white;
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    margin-top: 15px;
+    letter-spacing: 1px;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 3rem;
+    cursor: pointer;
+    line-height: 1;
+    transition: transform 0.3s;
+}
+
+.close-lightbox:hover {
+    transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+    .scrapbook-container {
+        gap: 20px;
+    }
+
+    .polaroid-item {
+        width: 100%;
+        max-width: 320px;
+        transform: rotate(0deg) !important;
+        /* Remove rotation on mobile for cleaner stack */
+        margin-top: 0 !important;
+    }
+}
